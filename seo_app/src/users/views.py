@@ -116,6 +116,10 @@ class SetPasswordView(View):
         return HttpResponse(loader.get_template('users/set_password.html').render(request=request, context={}))
 
     def post(self, request):
+        if request.POST.get('password1') == request.POST.get('password2'):
+            user = request.user
+            user.set_password(request.POST.get('password'))
+            user.save()
         return HttpResponse(loader.get_template('users/send_to_mail_confirm.html').render(request=request, context={}))
 
 
