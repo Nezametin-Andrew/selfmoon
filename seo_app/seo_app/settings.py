@@ -50,10 +50,13 @@ INSTALLED_APPS = [
     'src.www.apps.WwwConfig',
     'src.us_profile.apps.UsProfileConfig',
     'src.short_links.apps.ShortLinksConfig',
+    'src.core.apps.CoreConfig',
+    'src.account.apps.AccountConfig',
 
 ]
 
 MIDDLEWARE = [
+    'src.core.middleware.AnonymousUserMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',

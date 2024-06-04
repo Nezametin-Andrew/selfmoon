@@ -1,10 +1,6 @@
 from django.db import models
 
 
-class AnonimUser(models.Model):
-    pass
-
-
 class GroupLink(models.Model):
 
     title = models.CharField(max_length=255, verbose_name='Заголовок')
@@ -23,7 +19,7 @@ class LinkService(models.Model):
 class TaskLink(models.Model):
 
     task = models.OneToOneField(GroupLink, on_delete=models.CASCADE)
-    user = models.ForeignKey(AnonimUser, on_delete=models.CASCADE)
+    #user = models.ForeignKey(AnonimUser, on_delete=models.CASCADE)
     passed_task = models.BooleanField(default=False)
     access_key = models.CharField(max_length=255, unique=True, null=True, blank=True, default=None)
 
