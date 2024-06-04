@@ -1,0 +1,256 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+  <section class="section">
+      <div class="row">
+          <div class="col-lg-9">
+              <h4>Привет! Тебе нужно пройти кaждое задание, которые расположены снизу, по сути это обычный серфинг, который займет немного твоего времени</h4>
+              <h5><span class="badge bg-danger">ВАЖНО!!! Обязательно отключи блокировщик рекламы и почисти cookies перед началом.</span> <h5>
+              <h5><span class="badge bg-success">Обязательно нажми кнопку Проверить выполнение, скопируй ключ и отправь мне на проверку. </span></h5>
+              <br>
+          </div>
+      </div>
+  </section>
+
+  <section class="section">
+    <div class="row">
+      <div class="col-lg-9">
+      <h6>Шкала выполнения <span class="progress-title" id="progress-title">0%</span></h6>
+      <div class="progress">
+          
+          <div class="progress-bar" id="progress-bar" role="progressbar" style="width: 0%" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">0%</div>
+      </div>
+    </div>
+    </div>
+  </section>
+  <section class="section">
+      <div class="row">
+        <div class="col-lg-9">
+
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title">Список заданий</h5>
+
+              <!-- Default Accordion -->
+              <div class="accordion" id="accordionExample">
+                <div class="accordion-item">
+                  <h2 class="accordion-header" id="heading1">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
+                      Task 1
+                    </button>
+                  </h2>
+                  <div id="collapseOne" class="accordion-collapse collapse" aria-labelledby="headingOne" data-bs-parent="#accordionExample" style="">
+                    <div class="accordion-body">
+                      <p>1. Нажимаем кнопку начать задание, появится окно, как на картинке ниже, жмем синюю кнопку как на картинке. <br> <img src="/static/img/task1/1.jpg" alt=""></p>
+                      <p>2. В дополнительном окне браузера появится вкладка с рекламой <span style="color: red;">НЕ ЗАКРЫВАЕМ</span>, оставляем вкладку открытой до завершения задания, просто возвращаемся на первоначальну вкладку, на картинке отмечена зеленым, красную - НЕ ЗАКРЫВАТЬ! <br> <img src="/static/img/task1/2.jpg" alt="" style="display: block; margin: 0 auto; margin-top: 20px;"></p>
+                      <p>3. Вернувшись на первоначальную вкладку жмем на синюю кнопку, как на первой картинке. </p>
+                      <p>4. Появится кнопка для подтверждения. что вы не робот, нажимаем! Возможно при прохождении капчи будут открываться дополнительные вкладки и вас будет перекидывать, не закрываем, как и во втором пункте, возвращаемся на первоначальную вкладку и проходим капчу. <br> <img src="/static/img/task1/4.jpg" alt="" style="display: block; margin: 0 auto;"></p>
+                      <p>5. Проходим капчу. <br> <img src="/static/img/task1/5.jpg" alt="" style="display: block; margin: 0 auto;"></p>
+                      <p>6. Дожидаемся окончания таймера, жмем на синюю кнопку и возвращаемся на главную страницу, если все этапы будут сделаны правильно, вы вернетесь на эту страницу и увидите зеленую отметку, как пройденое задание <br> <img src="/static/img/task1/6.jpg" alt="" style="display: block; margin: 0 auto;"></p>
+                    <div class="start-task" style="margin-top: 50px;">
+                      <a href="" class="btn btn-primary btn-sm" title="Upload new profile image" id="start-task-1">Начать задание</a>
+                    </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="accordion-item">
+                  <h2 class="accordion-header" id="heading2">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                      Task 2
+                    </button>
+                  </h2>
+                  <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
+                    <div class="accordion-body">
+                     <p>1. Это задание аналогично первому, нажимаем кнопку начать задание, далее как на картинке, жмем сначала первую кнопку, потом вторую <img src="/static/img/task2/1.jpg" alt=""></p>
+                     <p>2. В дополнительном окне браузера появится вкладка с рекламой <span style="color: red;">НЕ ЗАКРЫВАЕМ</span>, оставляем вкладку открытой до завершения задания, просто возвращаемся на первоначальну вкладку, на картинке отмечена зеленым, красную - НЕ ЗАКРЫВАТЬ! <br> <img src="/static/img/task2/2.jpg" alt="" style="display: block; margin: 0 auto; margin-top: 20px;"></p> </p>
+                     <p>3. Далее подтверждаем, что вы не робот, проходим капчу, в этом задании. вас переодически будет перекидывать на новую открытую вкладку, вкладки на которые будет перекидыцвать, НЕ ЗАКРЫВАЕМ, просто возвращаемся на первоначальную вкладку и продолжаем заданиее <img src="/static/img/task2/3.jpg" alt=""></p>
+                      <p>4. Далее будет прогресс бар в виде таймера ждем и жмем кнопку, могут выскакивать окна типа: принять куки - принимаем, в этом задании открытых вкладок будет от 7 до 10, закроете их когда вас вернет на первоначальную страницу и увидите, что задание помечено как пройденое. <br> <img src="/static/img/task2/5.jpg" alt=""></p>
+                    <p>Описывать дальше не вижу смысла, там одни и те же действия, как и в предыдущих пунктах, выполняем все действия, вас автоматом вернет на главную, если сделали все как надо и приступайте к следущему заданию.</p>
+                    <div class="start-task" style="margin-top: 50px;">
+                      <a href="" class="btn btn-primary btn-sm" title="Upload new profile image" id="start-task-2">Начать задание</a>
+                    </div>  
+                  </div>
+                </div>
+                <div class="accordion-item">
+                  <h2 class="accordion-header" id="heading3">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                      Task 3
+                    </button>
+                  </h2>
+                  <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#accordionExample">
+                    <div class="accordion-body">
+                      <p>1. Это задание аналогично предыдущим, нажимаем кнопку начать задание, далее как на картинке, жмем на кнопку <br><img src="/static/img/task3/1.jpg" alt=""></p>
+                      <p>2. Перекинет на страницу там жмем оранжевую, появится таймер, ждем окончание и кликаем снова, но уже на синюю<br> <img src="/static/img/task3/2.jpg" alt=""></p> <p><br> <img src="/static/img/task3/3.jpg" alt=""></p> 
+                      <p>3. Далее снова оранжевая как на картинке <br> <img src="/static/img/task3/5.jpg" alt=""></p>
+                      <p>4. Потом снова синяя:) <img src="/static/img/task3/6.jpg" alt=""> </p>
+                      <p>5. В общем эти кнопки будут у вас появляться на основной странице, возможно нужно будет прокрутить страницу в низ, вы ее не пропустите, после вас перекинет на таймер, после таймера будет кнопка, не жмем ее, прокручиваем страницу ниже и ищем кнопку, как на последнем фото <br> <img src="/static/img/task3/7.jpg" alt=""> <br> <img src="/static/img/task3/8.jpg" alt=""></p>
+                      <div class="start-task" style="margin-top: 50px;">
+                        <a href="" class="btn btn-primary btn-sm" title="Upload new profile image" id="start-task-3">Начать задание</a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="accordion-item">
+                  <h2 class="accordion-header" id="heading4">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFour" aria-expanded="false" aria-controls="collapseThree">
+                      Task 3
+                    </button>
+                  </h2>
+                  <div id="collapseFour" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#accordionExample">
+                    <div class="accordion-body">
+                    <p>Дальнейшие пункты включаяя этот анологичны 1,2,3 пункту, если вы без проблем прошли первых три, то и эти пункта пройти не составит труда.</p>
+                    <div class="start-task" style="margin-top: 50px;">
+                      <a href="" class="btn btn-primary btn-sm" title="Upload new profile image" id="start-task-4">Начать задание</a>
+                    </div>
+                  </div>
+                  </div>
+                </div>
+                <div class="accordion-item">
+                  <h2 class="accordion-header" id="heading5">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFive" aria-expanded="false" aria-controls="collapseThree">
+                      Task 4
+                    </button>
+                  </h2>
+                  <div id="collapseFive" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#accordionExample">
+                    <div class="accordion-body">
+                    <p>Дальнейшие пункты включаяя этот анологичны 1,2,3 пункту, если вы без проблем прошли первых три, то и эти пункта пройти не составит труда.</p>
+                    <div class="start-task" style="margin-top: 50px;">
+                      <a href="" class="btn btn-primary btn-sm" title="Upload new profile image" id="start-task-5">Начать задание</a>
+                    </div>
+                  </div>
+                  </div>
+                </div>
+                <div class="accordion-item">
+                  <h2 class="accordion-header" id="heading6">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSix" aria-expanded="false" aria-controls="collapseThree">
+                      Task 5
+                    </button>
+                  </h2>
+                  <div id="collapseSix" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#accordionExample">
+                    <div class="accordion-body">
+                    <p>Дальнейшие пункты включаяя этот анологичны 1,2,3 пункту, если вы без проблем прошли первых три, то и эти пункта пройти не составит труда.</p>
+                    <div class="start-task" style="margin-top: 50px;">
+                      <a href="" class="btn btn-primary btn-sm" title="Upload new profile image" id="start-task-6">Начать задание</a>
+                    </div>
+                  </div>
+                  </div>
+                </div>
+
+              </div><!-- End Default Accordion Example -->
+
+            </div>
+          </div>
+
+        </div>
+
+
+      </div>
+    </section>
+  <section class="section">
+    <div class="row">
+      <div class="col-lg-9">
+        <div class="d-grid gap-2 mt-3">
+          <button class="btn btn-success" type="button" id="check-task">Проверить выполнение</button>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="section">
+    <div class="row">
+      <div class="col-lg-9">
+        <div id="alert-container" style="margin-top: 50px;">
+
+        </div>
+      </div>
+    </div>
+  </section>
+  <script>
+
+    function showAlert(message, isError) {
+      console.log(message, isError)
+      let alertType = isError ? 'danger' : 'success';
+      let alertHtml = `
+        <div class="alert alert-${alertType} bg-${alertType} text-light border-0 alert-dismissible fade show" role="alert">
+        ${message}
+        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+      `;
+      $('#alert-container').html(alertHtml);
+  }
+
+    window.localStorage.clear();
+    
+    if (window.localStorage.getItem('user')) {
+        let user = JSON.parse(window.localStorage.getItem('user'));
+    } else {
+        let user = {
+            task: {}
+        };
+        $.post('/get_user_data', 
+        {},
+         function(data){
+            if (data){
+              $.post('/get_profile_data', 
+              {},
+              function(data){
+                if (data && data.profile) {
+                    let profile = data.profile;
+                    let progressBar = 0;
+                    let totalTasks = 6;
+                    let completedTasks = 0;
+                    for (let i = 1; i <= totalTasks; i++) {
+                        
+                        let taskStatus = profile[`task${i}`] ? ' : Пройдено ✅' : ' : Не пройдено ❌';
+                        $(`#start-task-${i}`).attr('href', profile[`link${i}`])
+                        let taskButton = $(`#heading${i} button`);
+                        taskButton.html(`Task ${i} ${taskStatus}`);
+                        if (profile[`task${i}`]) {
+                            completedTasks++;
+                        }
+                        
+                        let taskBody = $(`#task${i}-body`);
+                        taskBody.html(`
+                            <strong>This is the task ${i}'s accordion body.</strong>
+                            <br>
+                            <button onclick="startTask('${profile[`link${i}`]}')">Начать задание</button>
+                        `);
+                    }
+
+                    // Обновляем прогресс-бар
+                    progressBar = (completedTasks / totalTasks) * 100;
+                    if (progressBar > 100) {
+                        progressBar = 100;
+                    }
+                    
+                    // Округляем значение progressBar до целого числа
+                    let roundedProgressBar = Math.round(progressBar);
+                    
+                    $('#progress-bar').css('width', `${roundedProgressBar}%`);
+                    $('#progress-bar').attr('aria-valuenow', roundedProgressBar);
+                    $('#progress-bar').text(`${roundedProgressBar}%`);
+                    $('#progress-title').text(`${roundedProgressBar}%`);
+                }
+              })
+            }
+         })
+         
+        for (let i = 1; i < 7; i++) {
+            user.task[`task${i}`] = 'failed';
+        }
+        window.localStorage.setItem('user', JSON.stringify(user));
+    }
+
+    function startTask(link) {
+        window.location.href = link;
+    }
+
+    $('#check-task').click(()=>{
+      $.post('/check_competed', 
+      {},
+      function(data){
+        showAlert(data.message, data.error);
+      })
+    })
+</script>
+{% endblock %}
