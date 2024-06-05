@@ -1,0 +1,11 @@
+<div class="pagetitle">
+    <h1>{{section}}</h1>
+    <nav>
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="/">Главная</a></li>
+        {% for nav in navigation %}
+            <li class="{{nav.class}}"><a href="{{nav.url}}" class="{{nav.url_class}}">{{nav.title}}</a></li>
+        {% endfor %}
+      </ol>
+    </nav>
+  </div>

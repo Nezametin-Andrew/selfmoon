@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+<script>
+
+    function getCSRFТoken() {
+        return document.querySelector('[name=csrfmiddlewaretoken]').value;
+    }
+
+    function updateViewArticle(answer){
+        $.post("{% url 'update_like_article' %}",
+            {
+                csrfmiddlewaretoken: getCSRFТoken(),
+                pk: "{{article.pk}}",
+                answer: answer
+            },
+            function(data){
+                $("#block-like").text(data.like);
+                $("#block-dislike").text(data.dislike);
+            }
+        )
+    }
+
+
+</script>
+
+{% csrf_token %}
+<section class="section">
+    <div class="row">
+        <div class="col-lg-7">
+            <div class="card">
+                <img src="{{article.image.url}}" class="card-img-top" alt="..." >
+                <div class="card-body">
+                  <h5 class="card-title">{{article.title}}</h5>
+                  <p class="card-text">{{article.article|safe}}</p>
+                </div>
+                <div class="card-footer d-flex justify-content-between">
+                    <div>{{article.created_at|date}}</div>
+                    <div><i class="bi bi-eye-fill"></i> {{article.views}} | <i class="bi bi-hand-thumbs-up" onclick="updateViewArticle(1)" style="cursor: pointer;"></i><span id="block-like">  {{article.likes}} </span> | <i class="bi bi-hand-thumbs-down" onclick="updateViewArticle(0)" style="cursor: pointer;"></i><span id="block-dislike">{{article.dis_likes}}</span></div>
+                </div>
+              </div>
+        </div>
+
+    </div>
+</section>
+{% endblock %}

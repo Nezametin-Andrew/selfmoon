@@ -41,7 +41,6 @@ class AnonymousUserMiddleware(MiddlewareMixin):
         request.anonymous_user = user
 
     def process_response(self, request, response):
-        print(response)
         if not request.COOKIES.get('sesid'):
             response.set_cookie('sesid', request.anonymous_user.sesid, expires=None)
         return response
