@@ -347,3 +347,14 @@
 $('#us-balance').click( ()=>{
   
 })
+
+$('#closeBlAvatar').click(()=>{
+  if(confirm('Вы действительно хотите удалить фото профиля?')){
+    $.post('trash_avatar/', 
+    {},
+    function(data){
+      window.location.href = '/profile/'
+    }
+  )
+  }
+})

@@ -19,6 +19,9 @@ from .forms import RegisterForm, LoginForm
 from django.utils.translation import gettext_lazy as _
 from django.contrib.auth import authenticate, login, logout
 
+from ..core.models import AnonymousUser
+from ..account.models import Account
+
 
 class LoginView(View):
     form_class = LoginForm
@@ -102,11 +105,27 @@ def register_confirm(request, token):
         person.save(update_fields=["is_active"])
 
         us_data = cache.get(f'us{str(person_id)}')
-        user = authenticate(request, email=us_data.get('email'), password=us_data.get('passw'))
-        if user is not None:
-            login(request, user)
+        if not us_data:
+            return HttpResponse("User data not found in cache", status=400)
 
-        return redirect(to=reverse_lazy("set_password"))
+        user = authenticate(request, email=us_data.get('email'), password=us_data.get('passw'))
+        if user is None:
+            return HttpResponse("Authentication failed", status=400)
+
+        sesid = request.COOKIES.get('sesid')
+        if sesid is not None:
+            try:
+                anonim = AnonymousUser.objects.get(sesid=sesid)
+                account = Account.objects.get(pk=anonim.account.pk)
+                user.profile.account = account
+                user.profile.save()
+            except AnonymousUser.DoesNotExist:
+                return HttpResponse("Anonymous user not found", status=400)
+            except Account.DoesNotExist:
+                return HttpResponse("Account not found", status=400)
+
+        login(request, user)
+        return HttpResponse(loader.get_template('users/confirm_email.html').render(request=request, context={}))
     else:
         return redirect(to=reverse_lazy("register"))
 

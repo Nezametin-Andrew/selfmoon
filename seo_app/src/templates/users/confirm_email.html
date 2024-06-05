@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% block content %}
+<main id="main" class="main">
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+        Ваш почта успешно подтверждена.
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+
+</main>
+<script>
+    setTimeout(() => {
+        window.location.href = '/'
+    }, 3000);
+</script>
+
+{% endblock %}

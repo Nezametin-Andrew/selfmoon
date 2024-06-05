@@ -6,6 +6,7 @@ from django.db.models.signals import post_save
 from django.dispatch import receiver
 
 from ..users.models import Person
+from ..account.models import Account
 
 
 class Profile(models.Model):
@@ -25,6 +26,7 @@ class Profile(models.Model):
     yandex = models.EmailField(verbose_name="",  blank=True)
     tg = models.CharField(max_length=255, verbose_name="",  blank=True)
     avatar = models.ImageField(upload_to=f"", blank=True)
+    account = models.ForeignKey(Account, on_delete=models.CASCADE, null=True, blank=True)
     about = models.TextField(verbose_name="users/avatar/", blank=True)
 
     # def save(self, *args, **kwargs):

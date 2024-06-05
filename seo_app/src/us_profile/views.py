@@ -5,6 +5,9 @@ from django.shortcuts import render, redirect
 from django.urls import reverse_lazy
 from django.views import View
 from django.views.generic import UpdateView
+from django.utils.decorators import method_decorator
+from django.views.decorators.csrf import csrf_exempt
+
 from .models import Profile
 from .forms import ProfileUpdateForm
 
@@ -55,3 +58,17 @@ class SaveImageView(View):
             return JsonResponse({'message': 'Image uploaded successfully'})
 
         return JsonResponse({'error': 'No image found in the request'}, status=400)
+
+
+@method_decorator(csrf_exempt, name='dispatch')
+class TrashAvatar(View):
+
+    def post(self, request):
+        user = request.user
+        try:
+            profile = user.profile
+            profile.avatar.delete(save=True)
+            profile.save()
+            return JsonResponse({'status': 'ok'})
+        except Profile.DoesNotExist:
+            return JsonResponse({'status': 'error', 'message': 'Profile does not exist'}, status=400)
