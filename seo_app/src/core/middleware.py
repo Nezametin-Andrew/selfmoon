@@ -33,7 +33,7 @@ class AnonymousUserMiddleware(MiddlewareMixin):
         else:
             ip_exists = IpAddress.objects.filter(ip=ip_address, created_at__range=(start_date, end_date)).exists()
             if ip_exists:
-                user = IpAddress.objects.get(ip=ip_address).user
+                user = IpAddress.objects.filter(ip=ip_address).first().user
             else:
                 account = Account.objects.create()
                 user = AnonymousUser.objects.create(sesid=generate_unique_sesid(), account=account)
