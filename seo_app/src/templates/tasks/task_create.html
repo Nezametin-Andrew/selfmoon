@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+    <section class="section">
+        {% include 'navigation.html' %}
+
+        <div class="row">
+            <div class="col-8">
+                <div class="card top-selling overflow-auto">
+  
+
+  
+                  <div class="card-body pb-0">
+                    <h5 class="card-title">Топ задач <span>| Today</span></h5>
+  
+                    <table class="table table-borderless">
+                      <thead>
+                        <tr>
+                          <th scope="col">#</th>
+                          <th scope="col">Категория</th>
+                          <th scope="col">Мин. цена</th>
+                          <th scope="col">Исп. Получит</th>
+                          <th scope="col">Количество</th>
+                          <th scope="col">Моих</th>
+                          <th scope="col">Создать</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        {% for task in tasks %}
+                        
+                        
+                        <tr>
+                          <th scope="row"><a href="#"><img src="{% static task.img %}" alt="" width="100px"></a></th>
+                          <td><a href="#" class="text-primary fw-bold">{{task.title}}</a></td>
+                          <td>{{task.min_price}}</td>
+                          <td class="fw-bold">{{task.executor}}</td>
+                          <td>{{task.amount}}</td>
+                          <td>{{task.user_amount}}</td>
+                          <td style="font-size: 25px; font-weight: bolder; color: gray;"><a href="{{task.create_link}}"><i class="bi bi-arrow-right-square-fill"></i></a></td>
+                        </tr>
+                        {% endfor %}
+
+
+                      </tbody>
+                    </table>
+  
+                  </div>
+  
+                </div>
+              </div>
+        </div>
+    </section>
+{% endblock %}
