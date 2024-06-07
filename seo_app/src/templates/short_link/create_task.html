@@ -9,7 +9,23 @@
         font-size: 14px;
         height: 150px;
     }
+    .tooltip {
+      position: absolute;
+      background-color: #333;
+      color: #fff;
+      padding: 5px 10px;
+      border-radius: 4px;
+      font-size: 14px;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s;
+      z-index: 1000;
+  }
+  .tooltip.show {
+      opacity: 1;
+  }
 </style>
+
 <section class="section">
     <div class="row">
         <div class="col-lg-6">
@@ -43,51 +59,8 @@
                         <!-- Accordion without outline borders -->
                         <div class="accordion accordion-flush" id="accordionFlushExample">
                           
-                            <div class="accordion-item">
-                                <h2 class="accordion-header" id="flush-headingOne">
-                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
-                                    Accordion Item #1
-                                </button>
-                                </h2>
-                                <div id="flush-collapseOne" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample" style="">
-                                <div class="accordion-body">
-                                    <div class="row mb-4">
-                                        <label for="inputText" class="col-sm-3 col-form-label">Ссылка сервиса:</label>
-                                        <div class="col-sm-9">
-                                          <input type="text" class="form-control">
-                                        </div>
-                                      </div>
-                                      <div class="row mb-4">
-                                        <label for="inputText" class="col-sm-3 col-form-label">Ссылка по умолчанию:</label>
-                                        <div class="col-sm-9">
-                                          <input type="text" class="form-control">
-                                        </div>
-                                      </div>
-                                      <div class="row mb-4">
-                                        <label for="inputText" class="col-sm-3 col-form-label">Ссылка API:</label>
-                                        <div class="col-sm-9">
-                                          <input type="text" class="form-control">
-                                        </div>
-                                      </div>
-                                      <div class="col-sm-10">
-                                        <div class="form-check form-switch">
-                                          <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault">
-                                          <label class="form-check-label" for="flexSwitchCheckDefault">Нужен alias для API?</label>
-                                        </div>
-                                      </div>
-                                      <div class="row mb-4">
-                                        <label for="inputPassword" class="col-sm-3 col-form-label">Общее описание:</label>
-                                        <div class="col-sm-9">
-                                          <textarea class="form-control" style="height: 120px; resize: none;" id="editor"></textarea>
 
-                                        </div>
-                                      </div>
-
-              
-                                </div>
-                                </div>
-                            </div>
-
+                            
                         </div><!-- End Accordion without outline borders -->
           
                       </div>
@@ -102,11 +75,15 @@
   
           </div>
     </div>
+    <div id="adblock-message" style="display:none; color:red;">
+      Пожалуйста, отключите блокировщик рекламы, чтобы поддержать наш сайт.
+  </div>
 </section>
 
-<script>
-
-</script>
 
 <script src="{% static 'assets/js/create_short_link.js' %}"></script>
 {% endblock %}
+<!-- 
+<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#verticalycentered">
+  Vertically centered
+</button> -->

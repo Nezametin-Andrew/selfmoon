@@ -20,12 +20,12 @@ from django.urls import path, include
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-
     path('', include('src.www.urls')),
     path('ckeditor/', include('ckeditor_uploader.urls')),
     path('account/', include('src.users.urls')),
     path('profile/', include('src.us_profile.urls')),
     path('balance/', include('src.account.urls')),
     path('news/', include('src.news.urls')),
-
+    path('short_link/', include('src.short_links.urls')),
+    path('task/', include('src.tasks.urls')),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

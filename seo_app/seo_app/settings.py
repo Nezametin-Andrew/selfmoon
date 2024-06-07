@@ -56,6 +56,7 @@ INSTALLED_APPS = [
     'src.core.apps.CoreConfig',
     'src.account.apps.AccountConfig',
     'src.news.apps.NewsConfig',
+    'src.tasks.apps.TasksConfig',
 
 ]
 
