@@ -10,4 +10,5 @@ urlpatterns = [
     path('upload_img/', UploadImageView.as_view(), name='upload_image'),
     path('save_img/', SaveImageView.as_view(), name='save_image'),
     path('trash_avatar/', TrashAvatar.as_view(), name='trash_avatar'),
+
 ]

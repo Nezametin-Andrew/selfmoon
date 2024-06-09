@@ -24,9 +24,35 @@
   .tooltip.show {
       opacity: 1;
   }
+
+  #validation-form {
+    position: fixed;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100%;
+    max-width: 600px;
+    z-index: 1050; /* Убедитесь, что элемент находится выше других элементов */
+    display: none; /* Изначально скрыт */
+}
+
+#validation-form.show {
+    display: block; /* Показать элемент, когда добавлен класс 'show' */
+}
+
 </style>
 
+<script>
+  var hideAlert = () => {}
+</script>
+
+<div class="alert alert-danger bg-danger text-light border-0 alert-dismissible fade" role="alert" id="validation-form">
+  A simple danger alert with solid color—check it out!
+  <button type="button" class="btn-close btn-close-white" onclick="hideAlert()" data-bs-dismiss="alert" aria-label="Close"></button>
+</div>
+
 <section class="section">
+
     <div class="row">
         <div class="col-lg-6">
 

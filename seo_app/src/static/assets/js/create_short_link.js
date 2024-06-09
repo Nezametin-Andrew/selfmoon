@@ -11,15 +11,26 @@ function validateAndAddLink() {
 function validateForm(amoLink) {
     let isValid = true;
     $(`#flush-collapse${amoLink} input[type="text"], #flush-collapse${amoLink} textarea`).each(function() {
-        if ($(this).val().trim() === "") {
-            isValid = false;
+        console.log(this)
+        let optional = $(this).data("optional");
+        let value = $(this).val().trim();
+        console.log('Optional:', optional, 'Value:', value); 
+        if (optional === undefined || optional === false) {
+            if (value === "") {
+                isValid = false;
+            }
         }
     });
     if (!isValid) {
-        alert("Пожалуйста, заполните все поля.");
+        $('#validation-form').addClass('show');
     }
     return isValid;
 }
+
+function hideAlert () { 
+    $('#validation-form').removeClass('show');
+ }
+
 
 function addLink(amoLink) {
     let html = `
@@ -54,7 +65,7 @@ function addLink(amoLink) {
                             </span>Ссылка сервиса:
                         </label>
                         <div class="col-sm-9">
-                            <input type="text" name="link_service${amoLink}" class="form-control">
+                            <input type="text" name="link_service${amoLink}" class="form-control" >
                         </div>
                     </div>
                     <div class="row mb-4">
@@ -69,7 +80,7 @@ function addLink(amoLink) {
                                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                     </div>
                                     <div class="modal-body">
-                                    Ссылка по умолчанию, нужно взять вашу уникальную ссылку и сократить ее, эта поле обязательно для заполнения. Ваша уникальная ссылка: https:example.com/pk/link
+                                    Ссылка по умолчанию, нужно взять вашу уникальную ссылку и сократить ее, эта поле обязательно для заполнения. Ваша уникальная ссылка: <span id='uniq_link${amoLink}'> </span>
                                     </div>
                                     <div class="modal-footer">
                                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
@@ -81,21 +92,22 @@ function addLink(amoLink) {
                         Ссылка по умолчанию:</label>
                         <div class="col-sm-9">
                             <input type="text" name="link_default${amoLink}" class="form-control">
+                            <input type='hidden' name='default-link${amoLink}' >
                         </div>
                     </div>
                     <div class="row mb-4">
                         <label for="link_api${amoLink}" class="col-sm-3 col-form-label">
-                                                    <span style="display: inline-block; margin-right: 5px; cursor: pointer; color: gray; font-size: 16px; font-weight: bolder;">
-                                <i class="bi bi-info-circle" data-tooltip="Нажмите, чтобы получить больше информации"></i>
-                                <div class="modal fade" id="verticalycentered2" tabindex="-1" aria-hidden="true" style="display: none;">
+                                <span style="display: inline-block; margin-right: 5px; cursor: pointer; color: gray; font-size: 16px; font-weight: bolder;">
+                                <i class="bi bi-info-circle" data-tooltip="Нажмите, чтобы получить больше информации" data-bs-toggle="modal" data-bs-target="#verticalycentered3"></i>
+                                <div class="modal fade" id="verticalycentered3" tabindex="-1" aria-hidden="true" style="display: none;">
                                 <div class="modal-dialog modal-dialog-centered">
                                 <div class="modal-content">
                                     <div class="modal-header">
-                                    <h5 class="modal-title">Ссылка по умолчанию:</h5>
+                                    <h5 class="modal-title">Ссылка API:</h5>
                                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                     </div>
                                     <div class="modal-body">
-                                    Ссылка по умолчанию, нужно взять вашу уникальную ссылку и сократить ее, эта поле обязательно для заполнения. Ваша уникальная ссылка: https:example.com/pk/link
+                                    Ссылка на API вашего сервиса по сокращению ссылок, нужно для генерации новых ссылок, чтобы каждый исполнитель проходил по уникальной ссылке 1 исполнитель = 1 ссылка. Ваши данные не передаются третьим лицам! Если сервис не предоставляет APi, то будет использована ссылка по умолчанию.
                                     </div>
                                     <div class="modal-footer">
                                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
@@ -106,17 +118,33 @@ function addLink(amoLink) {
                             </span>
                         Ссылка API:</label>
                         <div class="col-sm-9">
-                            <input type="text" name="link_api${amoLink}" class="form-control">
+                            <input type="text" name="link_api${amoLink}" class="form-control" data-optional="true">
                         </div>
                     </div>
                     <div class="row mb-4">
                         <label for="description_l${amoLink}" class="col-sm-3 col-form-label">
-                                                    <span style="display: inline-block; margin-right: 5px; cursor: pointer; color: gray; font-size: 16px; font-weight: bolder;">
-                                <i class="bi bi-info-circle" data-tooltip="Нажмите, чтобы получить больше информации"></i>
+                                <span style="display: inline-block; margin-right: 5px; cursor: pointer; color: gray; font-size: 16px; font-weight: bolder;">
+                                <i class="bi bi-info-circle" data-tooltip="Нажмите, чтобы получить больше информации"  data-bs-toggle="modal" data-bs-target="#verticalycentered4"></i>
+                                <div class="modal fade" id="verticalycentered4" tabindex="-1" aria-hidden="true" style="display: none;">
+                                <div class="modal-dialog modal-dialog-centered">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                    <h5 class="modal-title">Общее описание:</h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                    </div>
+                                    <div class="modal-body">
+                                    Напишите краткую инструкцию, как исполнитель должен пройти задание, инструкция - повысит уровень качества прохождения, для наглядности, вы можете добавить изображения.
+                                    </div>
+                                    <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                    </div>
+                                </div>
+                                </div>
+                            </div>
                             </span>
                         Общее описание:</label>
                         <div class="col-sm-9">
-                            <textarea class="form-control" name="description_l${amoLink}" style="height: 120px; resize: none;" id="editor${amoLink}"></textarea>
+                            <textarea class="form-control" name="description_l${amoLink}" style="height: 120px; resize: none;" id="editor${amoLink}" data-optional="true"></textarea>
                         </div>
                     </div>
                     <div class="col-sm-9">
@@ -124,10 +152,26 @@ function addLink(amoLink) {
                             
                             <label class="form-check-label" for="flexSwitchCheckDefault${amoLink}">
                                                         <span style="display: inline-block; margin-right: 5px; cursor: pointer; color: gray; font-size: 16px; font-weight: bolder;">
-                                <i class="bi bi-info-circle" data-tooltip="Нажмите, чтобы получить больше информации"></i>
-                            </span>
+                                <i class="bi bi-info-circle" data-tooltip="Нажмите, чтобы получить больше информации" data-bs-toggle="modal" data-bs-target="#verticalycentered5"></i>
+                                                            <div class="modal fade" id="verticalycentered5" tabindex="-1" aria-hidden="true" style="display: none;">
+                                <div class="modal-dialog modal-dialog-centered">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                    <h5 class="modal-title">alias для API:</h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                    </div>
+                                    <div class="modal-body">
+                                    Указывается в том случае, если вы указали ссылку для API и в этой ссылке есть параметр alias.
+                                    </div>
+                                    <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                    </div>
+                                </div>
+                                </div>
+                            </div>
+                                </span>
                             Нужен alias для API?</label>
-                            <input class="form-check-input" name="alias${amoLink}" type="checkbox" id="flexSwitchCheckDefault${amoLink}">
+                            <input class="form-check-input" name="alias${amoLink}" type="checkbox" id="flexSwitchCheckDefault${amoLink}" data-optional="true">
                         </div>
                     </div>
                     <div class="col-sm-9" style="margin-top: 20px;">
@@ -139,6 +183,26 @@ function addLink(amoLink) {
     `;
 
     $('#accordionFlushExample').append(html);
+
+    $.post(
+        '/short_link/create_link_template/',
+        {},
+        function (data){
+            if(data.short_link != ''){
+                let element = document.getElementById(`uniq_link${amoLink}`);
+                let inputElement = document.querySelector(`input[name='default-link${amoLink}']`);
+                
+                if (element && inputElement) {
+                    element.innerText = data.short_link;
+                    inputElement.value = data.short_link;
+
+                } else {
+                    console.error(`Element uniq_link${amoLink} not found`);
+                }
+            }
+        }
+    )
+
     addCkeditor(amoLink);
     amountLink++;
 }
